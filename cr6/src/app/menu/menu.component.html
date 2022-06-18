@@ -1,1 +1,17 @@
-<p>menu works!</p>
+<div class="container d-flex gap-3">
+  <div class="card m-3" style="width: 18rem;" *ngFor="let food of dishes; index as dishID">
+    <img src="{{food.image}}" class="card-img-top" alt="{{food.name}}">
+    <div class="card-body">
+      <h5 class="card-title">{{food.name}}</h5>
+      <p class="card-text">{{food.description}}
+      </p>
+      <ng-template [ngIf]="food.availability == true" [ngIfElse]="sad">
+        <a class="btn btn-primary m-1" routerLink="details/{{dishID}}">Details</a>
+        <a class="btn btn-success m-1" (click)="addToCart()">Order</a>
+      </ng-template>
+      <ng-template #sad>
+        <a class="btn btn-danger">Out of Stock</a>
+      </ng-template>
+    </div>
+  </div>
+</div>
